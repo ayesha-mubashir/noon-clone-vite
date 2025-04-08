@@ -1,0 +1,15 @@
+/* .header-top {
+    background-color: #e6d70a;
+    display: flex;
+    justify-content: space-between; 
+    padding: 10px 20px; 
+    align-items: center; 
+  }
+   */
+
+
+   .header-top {
+    background-color: #e6d70a;
+    width: 100%;
+  }
+  

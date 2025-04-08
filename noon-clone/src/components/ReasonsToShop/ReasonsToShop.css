@@ -1,0 +1,276 @@
+/* .reasons-container {
+  width: 100%;
+  max-width: 1600px;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  
+}
+
+.reasons-columns {
+  display: flex;
+  gap: 20px;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.reasons-column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+
+.reasons-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+}
+
+.reason-img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.reason-card {
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.card-content {
+  padding: 10px;
+}
+
+.mega-deals-header {
+  width: 100%;
+}
+
+.timer-badge {
+  background-color: #333;
+  border-radius: 4px;
+}
+
+.deals-button-container {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.deals-button {
+  background-color: #333;
+  border: none;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.category-button {
+  background-color: #FFD700;
+  border: none;
+  font-size: 12px;
+  font-weight: bold;
+  display: inline-block;
+}
+
+.products-grid {
+  margin-top: 10px;
+}
+
+.product-card {
+  position: relative;
+  border-radius: 8px;
+  margin-top: 0px;
+ 
+  overflow: hidden;
+}
+
+.add-to-cart {
+  border: 1px solid #eee;
+}
+
+.product-name {
+  margin-bottom: 5px;
+  font-size: 12px;
+  height: 32px;
+  overflow: hidden;
+
+}
+
+.original-price {
+  color: #d32f2f;
+  margin-right: 5px;
+}
+
+.discounted-price {
+  font-weight: bold;
+}
+
+.focus-card, .gaming-card {
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+
+@media (max-width: 1024px) {
+  .reasons-columns {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 640px) {
+  .products-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .reasons-grid {
+    grid-template-columns: 1fr;
+  }
+} */
+
+
+
+.reasons-container {
+  width: 100%;
+  max-width: 1600px;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  display: flex; 
+  justify-content: space-between;
+  align-items: stretch; 
+}
+
+.reasons-columns {
+  display: flex;
+  gap: 20px;
+  flex-direction: row;
+  width: 100%;
+  height: 100%; 
+  justify-content: space-between;
+}
+
+.reasons-column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100%; 
+  justify-content: space-between;
+}
+
+.mega-deals-header,
+.products-grid,
+.focus-card,
+.gaming-card {
+  flex-grow: 1; 
+}
+
+.reasons-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+}
+
+.reason-img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.reason-card {
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.card-content {
+  padding: 10px;
+}
+
+.mega-deals-header {
+  width: 100%;
+}
+
+.timer-badge {
+  background-color: #333;
+  border-radius: 4px;
+}
+
+.deals-button-container {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.deals-button {
+  background-color: #333;
+  border: none;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.category-button {
+  background-color: #FFD700;
+  border: none;
+  font-size: 12px;
+  font-weight: bold;
+  display: inline-block;
+}
+
+.products-grid {
+  margin-top: 10px;
+}
+
+.product-card {
+  position: relative;
+  border-radius: 8px;
+  margin-top: 0px;
+ 
+  overflow: hidden;
+}
+
+.add-to-cart {
+  border: 1px solid #eee;
+}
+
+.product-name {
+  margin-bottom: 5px;
+  font-size: 12px;
+  height: 32px;
+  overflow: hidden;
+}
+
+.original-price {
+  color: #d32f2f;
+  margin-right: 5px;
+}
+
+.discounted-price {
+  font-weight: bold;
+}
+
+.focus-card, .gaming-card {
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .reasons-columns {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 640px) {
+  .products-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .reasons-grid {
+    grid-template-columns: 1fr;
+  }
+}
