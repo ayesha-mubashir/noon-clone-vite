@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { ProductContext } from "../../Context/ProductContext";
-import { brands, categories, deals } from "../../utils/FashionConst";
+import { brands, categories, deals } from "../../utils/FashionData";
 import Checkbox from "../CheckBox/CheckBox";
 import Radio from "../Radio/Radio";
 import PriceRange from "../PriceRange/PriceRange";

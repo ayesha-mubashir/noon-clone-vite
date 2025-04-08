@@ -1,8 +1,7 @@
 "use client";
 import { useState } from "react";
 import "./HeaderMain.css";
-import {categories} from "../../utils/constants";
-
+import { categories } from "../../utils/constantsData";
 
 const HeaderMain = () => {
   const [hoveredCategory, setHoveredCategory] = useState(null);

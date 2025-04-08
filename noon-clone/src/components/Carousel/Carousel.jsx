@@ -3,8 +3,8 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./Carousel.css";
-import { categories_carousel } from "../../utils/constants";
-import { settings } from "../../utils/constants";
+import { categories_carousel } from "../../utils/constantsData";
+import { settings } from "../../utils/constantsData";
 
 const Carousel = () => {
   return (

@@ -1,4 +1,4 @@
-import { categories as allCategories } from "../../utils/FashionConst";
+import { categories as allCategories } from "../../utils/FashionData";
 import Dropdown from "../Dropdown/Dropdown";
 
 const CategoryDropdown = () => {

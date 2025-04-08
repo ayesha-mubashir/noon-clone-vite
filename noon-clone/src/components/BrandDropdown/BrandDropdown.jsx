@@ -1,4 +1,4 @@
-import { brands as allBrands } from "../../utils/FashionConst";
+import { brands as allBrands } from "../../utils/FashionData";
 import Dropdown from "../Dropdown/Dropdown";
 
 const BrandDropdown = () => {

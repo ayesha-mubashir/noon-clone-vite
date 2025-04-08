@@ -1,9 +1,8 @@
-
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { useNavigate } from "react-router-dom";
-import { ProductCard } from "../../utils/ProductsConst";
+import ProductCard from "../ProductCard/ProductCard";
 
 const Discount = ({ heading, btnText, products, settings, navigateTo }) => {
   const navigate = useNavigate();

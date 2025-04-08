@@ -9,9 +9,9 @@ import Fashion from "./components/Fashion/Fashion";
 import Savings from "./components/Savings/Savings";
 import Footer from "./components/Footer/Footer";
 import ViewAllPage from "./pages/ViewAllPage";
-import { settings } from "./utils/constants";
+import { settings } from "./utils/constantsData";
 import { beauty, electronics, products } from "./utils/ProductsConst";
-import { womenCategoryData, menCategoryData } from "./utils/FashionConst";
+import { womenCategoryData, menCategoryData } from "./utils/FashionData";
 
 const fashion = [
   {
