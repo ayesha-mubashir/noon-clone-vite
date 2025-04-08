@@ -4,7 +4,7 @@ const Fashion = ({ heading, items, navigateTo, buttonText }) => {
   const navigate = useNavigate();
 
   const handleViewAll = () => {
-    navigate(navigateTo); 
+    navigate(navigateTo);
   };
 
   return (
@@ -21,14 +21,12 @@ const Fashion = ({ heading, items, navigateTo, buttonText }) => {
 
       <div className="flex justify-between items-center gap-4">
         {items.map((item) => (
-          
-            <img
-              key={item.id} 
-              src={item.image}
-              alt="Category Item"
-              className=" h-[300px] w-full object-cover rounded-lg"
-            />
-         
+          <img
+            key={item.id}
+            src={item.image}
+            alt="Category Item"
+            className=" h-[300px] w-full object-cover rounded-lg"
+          />
         ))}
       </div>
     </div>
