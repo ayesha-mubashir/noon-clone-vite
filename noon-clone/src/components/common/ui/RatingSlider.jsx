@@ -1,6 +1,4 @@
-import React from "react";
-
-const Rating = ({ rating, onChange }) => {
+const RatingSlider = ({ rating, onChange }) => {
   return (
     <div className="mt-4">
       <h3 className="font-bold mb-1">Product Rating</h3>
@@ -22,4 +20,4 @@ const Rating = ({ rating, onChange }) => {
   );
 };
 
-export default Rating;
+export default RatingSlider;

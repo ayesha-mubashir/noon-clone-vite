@@ -1,6 +1,6 @@
 import Slider from "react-slick";
 import { settings } from "../../utils/constantsData";
-import { savingsOffers } from "../../utils/SavingsOffers";
+import { savingsOffers } from "../../utils/SavingsOffersData";
 
 const Savings = () => {
   return (

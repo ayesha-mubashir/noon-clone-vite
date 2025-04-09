@@ -18,20 +18,21 @@ const HeaderMain = () => {
           >
             <span className="category-name">{category.name}</span>
 
-            {hoveredCategory === category.name && category.subcategories && (
-              <div className="dropdown-menu">
-                {Object.keys(category.subcategories).map((subcat, i) => (
-                  <div key={i} className="subcategory">
-                    <strong>{subcat}</strong>
-                    <ul>
-                      {category.subcategories[subcat].map((item, j) => (
-                        <li key={j}>{item}</li>
-                      ))}
-                    </ul>
-                  </div>
-                ))}
-              </div>
-            )}
+            {hoveredCategory === category.name &&
+              category.subcategories?.length > 0 && (
+                <div className="dropdown-menu">
+                  {category.subcategories.map((subcat, i) => (
+                    <div key={i} className="subcategory">
+                      <strong>{subcat.label}</strong>
+                      <ul>
+                        {subcat.items.map((item, j) => (
+                          <li key={j}>{item}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  ))}
+                </div>
+              )}
           </div>
         ))}
       </nav>

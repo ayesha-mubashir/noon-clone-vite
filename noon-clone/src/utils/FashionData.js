@@ -60,3 +60,24 @@ export const footerData = [
     links: ["Pampers", "Apple", "Nike", "Samsung"],
   },
 ];
+
+export const fashion = [
+  {
+    heading: "Women's Fashion",
+    items: womenCategoryData,
+    navigateTo: "/view-all-womens-fashion",
+    buttonText: "View All",
+  },
+  {
+    heading: "Men's Fashion",
+    items: menCategoryData,
+    navigateTo: "/view-all-mens-fashion",
+    buttonText: "View All",
+  },
+  {
+    heading: "Beauty",
+    items: womenCategoryData,
+    navigateTo: "/view-all-beauty",
+    buttonText: "View All",
+  },
+];

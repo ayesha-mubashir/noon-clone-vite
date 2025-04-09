@@ -1,9 +1,10 @@
-const Radio = ({ name, options, selectedValue, onChange }) => {
+const RadioButton = ({ name, options, selectedValue, onChange }) => {
   return (
     <div className="flex flex-col gap-2">
       {options.map((option) => (
         <label key={option.value}>
           <input
+            className="mr-2"
             type="radio"
             name={name}
             value={option.value}
@@ -17,4 +18,4 @@ const Radio = ({ name, options, selectedValue, onChange }) => {
   );
 };
 
-export default Radio;
+export default RadioButton;

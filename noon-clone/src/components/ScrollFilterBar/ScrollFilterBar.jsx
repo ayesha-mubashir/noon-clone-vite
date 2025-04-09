@@ -1,16 +1,15 @@
-import { useContext, useState, useEffect, useRef } from "react";
+import { useContext, useEffect, useRef } from "react";
 import { ProductContext } from "../../Context/ProductContext";
 import BrandDropdown from "../BrandDropdown/BrandDropdown";
 import PriceDropdown from "../PriceDropdown/PriceDropdown";
 import CategoryDropdown from "../CategoryDropdown/CategoryDropdown";
+import ExpressDropdown from "../ExpressDropdown/ExpressDropdown";
+import DealsDropdown from "../DealsDropdown/DealsDropdown";
 import { FaChevronDown } from "react-icons/fa";
 
 const ScrollFilterBar = () => {
-  const { filters, activeDropdown, setActiveDropdown } =
+  const { filters, activeDropdown, setActiveDropdown, selectedFilterKeys } =
     useContext(ProductContext);
-
-  const dropdownRef = useRef(null);
-  const buttonRef = useRef(null);
 
   const buttons = [
     { label: "Brand", key: "brand", isSelected: filters.brand.length > 0 },
@@ -26,15 +25,39 @@ const ScrollFilterBar = () => {
       key: "category",
       isSelected: filters.category.length > 0,
     },
+    {
+      label: "Express",
+      key: "express",
+      isSelected: filters.express !== null,
+    },
+    {
+      label: "Ratings",
+      key: "rating",
+      isSelected: filters.rating > 0,
+    },
   ];
+
+  const dropdownRefs = useRef({});
+  const buttonRefs = useRef({});
 
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (
-        dropdownRef.current &&
-        !dropdownRef.current.contains(event.target) &&
-        !buttonRef.current.contains(event.target)
-      ) {
+      let clickedInsideAny = false;
+
+      Object.keys(dropdownRefs.current).forEach((key) => {
+        const dropdown = dropdownRefs.current[key];
+        const button = buttonRefs.current[key];
+
+        if (dropdown && dropdown.contains(event.target)) {
+          clickedInsideAny = true;
+        }
+
+        if (button && button.contains(event.target)) {
+          clickedInsideAny = true;
+        }
+      });
+
+      if (!clickedInsideAny) {
         setActiveDropdown(null);
       }
     };
@@ -54,15 +77,17 @@ const ScrollFilterBar = () => {
   };
 
   return (
-    <div className="relative z-10 bg-white border-b shadow-sm container mx-auto my-6 px-4 mt-60a">
+    <div className="relative z-10 container mx-auto my-6 px-4 mt-60a">
       <div className="max-w-7xl mx-auto px-4 py-3">
         <div className="flex gap-4 flex-wrap justify-center">
-          {buttons
-            .filter((btn) => btn.isSelected)
-            .map((btn, idx) => (
+          {selectedFilterKeys.map((key, idx) => {
+            const btn = buttons.find((b) => b.key === key);
+            if (!btn || !btn.isSelected) return null;
+
+            return (
               <div key={idx} className="relative">
                 <button
-                  ref={buttonRef}
+                  ref={(el) => (buttonRefs.current[btn.key] = el)}
                   className={`px-4 py-2 text-sm border rounded-full hover:cursor-pointer flex ${
                     activeDropdown === btn.key
                       ? "bg-blue-600 text-white"
@@ -75,19 +100,25 @@ const ScrollFilterBar = () => {
                 </button>
 
                 {activeDropdown === btn.key && (
-                  <div ref={dropdownRef} className="absolute left-0 mt-2 z-50">
+                  <div
+                    ref={(el) => (dropdownRefs.current[btn.key] = el)}
+                    className="absolute left-0 mt-2 z-50"
+                  >
                     {btn.key === "brand" && <BrandDropdown />}
                     {btn.key === "price" && <PriceDropdown />}
-                    {btn.key === "deals" && (
+                    {btn.key === "deals" && <DealsDropdown />}
+                    {btn.key === "express" && <ExpressDropdown />}
+                    {btn.key === "rating" && (
                       <div className="bg-white p-4 rounded shadow">
-                        Deals Dropdown
+                        Ratings Dropdown
                       </div>
                     )}
                     {btn.key === "category" && <CategoryDropdown />}
                   </div>
                 )}
               </div>
-            ))}
+            );
+          })}
         </div>
       </div>
     </div>

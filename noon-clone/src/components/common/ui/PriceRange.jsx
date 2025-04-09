@@ -6,7 +6,7 @@ const PriceRange = ({
   onSubmit,
 }) => {
   return (
-    <div className="mt-6 ">
+    <div className="mt-6 container">
       <h3 className="font-bold mb-2">Price</h3>
       <div className="flex gap-2 mb-2">
         <div className="flex items-center gap-1 ">
@@ -27,7 +27,7 @@ const PriceRange = ({
           />
         </div>
         <button
-          className="bg-blue-600 text-white px-3 py-1 h-8 ml-2 rounded text-sm hover:bg-blue-400"
+          className="bg-blue-600 text-white px-2 py-1 h-8 ml-0 rounded text-sm z-50 hover:bg-blue-400"
           onClick={onSubmit}
         >
           Go

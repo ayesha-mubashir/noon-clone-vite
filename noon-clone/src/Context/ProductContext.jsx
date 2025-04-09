@@ -1,5 +1,5 @@
 import { createContext, useState } from "react";
-import { beauty } from "../utils/ProductsConst";
+import { beauty } from "../utils/ProductsData";
 
 export const ProductContext = createContext();
 
@@ -14,9 +14,17 @@ export const ProductProvider = ({ children }) => {
     deliveryMode: null,
   });
 
+  const [selectedFilterKeys, setSelectedFilterKeys] = useState([]);
   const [activeDropdown, setActiveDropdown] = useState(null);
   const [minPrice, setMinPrice] = useState("");
   const [maxPrice, setMaxPrice] = useState("");
+
+  const updateSelectionOrder = (key) => {
+    setSelectedFilterKeys((prev) => {
+      const filtered = prev.filter((item) => item !== key);
+      return [...filtered, key];
+    });
+  };
 
   const filteredProducts = beauty.filter((product) => {
     const brandMatch =
@@ -55,6 +63,9 @@ export const ProductProvider = ({ children }) => {
         setMinPrice,
         maxPrice,
         setMaxPrice,
+        selectedFilterKeys,
+        setSelectedFilterKeys,
+        updateSelectionOrder,
       }}
     >
       {children}
