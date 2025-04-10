@@ -1,11 +1,14 @@
-import { useContext, useState } from "react";
-import { ProductContext } from "../../Context/ProductContext";
-import useFilterHandlers from "../../hooks/useFilterHandlers";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  setMinPrice,
+  setMaxPrice,
+  clearPrice,
+} from "../../redux/actions/FilterActions";
 
 const PriceDropdown = () => {
-  const { minPrice, setMinPrice, maxPrice, setMaxPrice } =
-    useContext(ProductContext);
-  const { handleClearPrice } = useFilterHandlers();
+  const dispatch = useDispatch();
+  const minPrice = useSelector((state) => state.filters.minPrice);
+  const maxPrice = useSelector((state) => state.filters.maxPrice);
 
   return (
     <div className="absolute left-0 top-full mt-2 bg-white shadow-lg p-4 rounded-lg w-[320px] z-50">
@@ -13,7 +16,7 @@ const PriceDropdown = () => {
       <input
         type="number"
         value={minPrice}
-        onChange={(e) => setMinPrice(e.target.value)}
+        onChange={(e) => dispatch(setMinPrice(e.target.value))}
         className="w-full p-2 border mb-3 rounded text-sm"
       />
 
@@ -21,13 +24,13 @@ const PriceDropdown = () => {
       <input
         type="number"
         value={maxPrice}
-        onChange={(e) => setMaxPrice(e.target.value)}
+        onChange={(e) => dispatch(setMaxPrice(e.target.value))}
         className="w-full p-2 border rounded text-sm"
       />
 
       <div className="flex justify-between mt-4">
         <button
-          onClick={handleClearPrice}
+          onClick={() => dispatch(clearPrice())}
           className="text-sm underline text-gray-600"
         >
           Clear

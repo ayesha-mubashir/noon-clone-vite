@@ -4,7 +4,7 @@ const RadioButton = ({ name, options, selectedValue, onChange }) => {
       {options.map((option) => (
         <label key={option.value}>
           <input
-            className="mr-2"
+            className="mr-2 cursor-pointer"
             type="radio"
             name={name}
             value={option.value}

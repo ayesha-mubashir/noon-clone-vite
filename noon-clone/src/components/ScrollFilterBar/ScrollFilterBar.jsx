@@ -1,5 +1,6 @@
-import { useContext, useEffect, useRef } from "react";
-import { ProductContext } from "../../Context/ProductContext";
+import { useEffect, useRef } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { setActiveDropdown } from "../../redux/actions/FilterActions";
 import BrandDropdown from "../BrandDropdown/BrandDropdown";
 import PriceDropdown from "../PriceDropdown/PriceDropdown";
 import CategoryDropdown from "../CategoryDropdown/CategoryDropdown";
@@ -7,9 +8,20 @@ import ExpressDropdown from "../ExpressDropdown/ExpressDropdown";
 import DealsDropdown from "../DealsDropdown/DealsDropdown";
 import { FaChevronDown } from "react-icons/fa";
 
+import { setSelectedFilterKeysFromFilters } from "../../redux/reducers/FilterReducer";
+import RatingDropdown from "../RatingDropdown/RatingDropdown";
+
 const ScrollFilterBar = () => {
-  const { filters, activeDropdown, setActiveDropdown, selectedFilterKeys } =
-    useContext(ProductContext);
+  const dispatch = useDispatch();
+  const filters = useSelector((state) => state.filters.filters);
+  const activeDropdown = useSelector((state) => state.filters.activeDropdown);
+  const selectedFilterKeys = useSelector(
+    (state) => state.filters.selectedFilterKeys
+  );
+
+  console.log("ScrollFilterBar filters:", filters);
+  console.log("activeDropdown:", activeDropdown);
+  console.log("selectedFilterKeys:", selectedFilterKeys);
 
   const buttons = [
     { label: "Brand", key: "brand", isSelected: filters.brand.length > 0 },
@@ -58,7 +70,7 @@ const ScrollFilterBar = () => {
       });
 
       if (!clickedInsideAny) {
-        setActiveDropdown(null);
+        dispatch(setActiveDropdown(null));
       }
     };
 
@@ -66,13 +78,17 @@ const ScrollFilterBar = () => {
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [setActiveDropdown]);
+  }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(setSelectedFilterKeysFromFilters());
+  }, [filters]);
 
   const handleButtonClick = (key) => {
     if (activeDropdown === key) {
-      setActiveDropdown(null);
+      dispatch(setActiveDropdown(null));
     } else {
-      setActiveDropdown(key);
+      dispatch(setActiveDropdown(key));
     }
   };
 
@@ -108,11 +124,7 @@ const ScrollFilterBar = () => {
                     {btn.key === "price" && <PriceDropdown />}
                     {btn.key === "deals" && <DealsDropdown />}
                     {btn.key === "express" && <ExpressDropdown />}
-                    {btn.key === "rating" && (
-                      <div className="bg-white p-4 rounded shadow">
-                        Ratings Dropdown
-                      </div>
-                    )}
+                    {btn.key === "rating" && <RatingDropdown />}
                     {btn.key === "category" && <CategoryDropdown />}
                   </div>
                 )}

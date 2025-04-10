@@ -4,6 +4,7 @@ const CheckBox = ({ name, options, selectedValues, onChange }) => {
       {options.map((option) => (
         <div key={option}>
           <input
+            className="cursor-pointer"
             type="checkbox"
             checked={selectedValues.includes(option)}
             onChange={() => onChange(option)}

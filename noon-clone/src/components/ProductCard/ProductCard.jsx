@@ -1,7 +1,7 @@
 import { AiOutlineHeart } from "react-icons/ai";
 export const ProductCard = ({ product }) => {
   return (
-    <div className="bg-white rounded-lg border shadow-sm p-3 h-[390px] w-[240px] ">
+    <div className="bg-white rounded-lg border shadow-sm p-3 h-[390px] w-[240px] relative">
       <button className="absolute top-2 right-2 bg-white p-1 rounded-full shadow text-gray-600 hover:text-red-500">
         <AiOutlineHeart size={18} />
       </button>

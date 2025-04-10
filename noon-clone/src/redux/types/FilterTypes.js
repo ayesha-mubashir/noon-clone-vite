@@ -1,0 +1,22 @@
+export const SET_FILTERS = "SET_FILTERS";
+export const SET_ACTIVE_DROPDOWN = "SET_ACTIVE_DROPDOWN";
+export const SET_SELECTED_KEYS = "SET_SELECTED_KEYS";
+export const UPDATE_FILTER = "UPDATE_FILTER";
+export const CLEAR_FILTER = "CLEAR_FILTER";
+export const TOGGLE_FILTER_ITEM = "TOGGLE_FILTER_ITEM";
+
+export const SET_MIN_PRICE = "SET_MIN_PRICE";
+export const SET_MAX_PRICE = "SET_MAX_PRICE";
+export const CLEAR_PRICE = "CLEAR_PRICE";
+
+export const SET_RATING = "SET_RATING";
+export const CLEAR_RATING = "CLEAR_RATING";
+
+export const CLEAR_CATEGORY = "CLEAR_CATEGORY";
+
+export const CLEAR_BRAND = "CLEAR_BRAND";
+
+export const SET_EXPRESS = "SET_EXPRESS";
+export const CLEAR_EXPRESS = "CLEAR_EXPRESS";
+
+export const CLEAR_DEALS = "CLEAR_DEALS";

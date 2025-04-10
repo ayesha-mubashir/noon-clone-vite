@@ -1,5 +1,19 @@
-import React from "react";
-import useFilterHandlers from "../../hooks/useFilterHandlers";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  setMinPrice,
+  setMaxPrice,
+  clearFilter,
+  clearExpress,
+  clearPrice,
+  updateFilter,
+  setExpress,
+  setFilters,
+  setSelectedFilterKeys,
+  clearRating,
+  clearCategory,
+  clearBrand,
+  clearDeals,
+} from "../../redux/actions/FilterActions";
 import { brands, categories, deals } from "../../utils/FashionData";
 import CheckBox from "../common/ui/CheckBoxButton";
 import RadioButton from "../common/ui/RadioButton";
@@ -7,36 +21,37 @@ import PriceRange from "../common/ui/PriceRange";
 import RatingSlider from "../common/ui/RatingSlider";
 
 const FiltersSidebar = () => {
-  const {
-    filters,
-    minPrice,
-    maxPrice,
-    setMinPrice,
-    setMaxPrice,
-    handleClearBrand,
-    handleClearCategory,
-    handleClearDeals,
-    handleClearPrice,
-    handleClearRatings,
-    handleClearAll,
-    handleExpressChange,
-    handleCategoryChange,
-    handleBrandChange,
-    handleDealChange,
-    handlePriceSubmit,
-    handleRatingChange,
-    handleClearExpress,
-  } = useFilterHandlers();
+  const dispatch = useDispatch();
+  const filters = useSelector((state) => state.filters.filters);
+  const minPrice = useSelector((state) => state.filters.minPrice);
+  const maxPrice = useSelector((state) => state.filters.maxPrice);
+
+  // console.log("Sidebar filters:", filters);
+
+  const handleClearAll = () => {
+    dispatch(
+      setFilters({
+        brand: [],
+        category: [],
+        express: null,
+        priceRange: { min: 0, max: Infinity },
+        deals: [],
+        rating: 0,
+      })
+    );
+    dispatch(setSelectedFilterKeys([]));
+  };
 
   return (
     <div className="w-1/6 p-4">
       <button
-        className="hover:underline px-4 py-2 rounded mb-4"
         onClick={handleClearAll}
+        className="hover:underline px-4 py-2 rounded mb-4"
       >
         Clear All Filters
       </button>
 
+      {/* Delivery Mode */}
       <h3 className="font-bold mb-2">Delivery Mode</h3>
       <RadioButton
         name="express"
@@ -48,74 +63,96 @@ const FiltersSidebar = () => {
         selectedValue={
           filters.express === null ? "null" : filters.express.toString()
         }
-        onChange={handleExpressChange}
+        onChange={(e) => dispatch(setExpress(e.target.value))}
       />
       <button
-        onClick={handleClearExpress}
+        onClick={() => dispatch(clearExpress())}
         className="text-sm underline text-gray-600"
       >
         Clear
       </button>
 
+      {/* Category */}
       <h3 className="font-bold mt-4">Category</h3>
       <CheckBox
         name="category"
         options={categories}
         selectedValues={filters.category}
-        onChange={handleCategoryChange}
+        onChange={(value) => dispatch(updateFilter("category", value))}
       />
       <button
-        onClick={handleClearCategory}
+        onClick={() => dispatch(clearCategory())}
         className="text-sm underline text-gray-600"
       >
         Clear
       </button>
 
+      {/* Brand */}
       <h3 className="font-bold mt-4">Brand</h3>
       <CheckBox
         name="brand"
         options={brands}
         selectedValues={filters.brand}
-        onChange={handleBrandChange}
+        onChange={(value) => dispatch(updateFilter("brand", value))}
       />
       <button
-        onClick={handleClearBrand}
+        onClick={() => dispatch(clearBrand())}
         className="text-sm underline text-gray-600"
       >
         Clear
       </button>
 
+      {/* Deals */}
       <h3 className="font-bold mt-4">Deals</h3>
       <CheckBox
         name="deals"
         options={deals}
         selectedValues={filters.deals}
-        onChange={handleDealChange}
+        onChange={(value) => dispatch(updateFilter("deals", value))}
       />
       <button
-        onClick={handleClearDeals}
+        onClick={() => dispatch(clearDeals())}
         className="text-sm underline text-gray-600"
       >
         Clear
       </button>
 
+      {/* Price */}
       <PriceRange
         minPrice={minPrice}
         maxPrice={maxPrice}
-        onMinPriceChange={(e) => setMinPrice(e.target.value)}
-        onMaxPriceChange={(e) => setMaxPrice(e.target.value)}
-        onSubmit={handlePriceSubmit}
+        onMinPriceChange={(e) => dispatch(setMinPrice(e.target.value))}
+        onMaxPriceChange={(e) => dispatch(setMaxPrice(e.target.value))}
+        onSubmit={() =>
+          dispatch(
+            setFilters({
+              ...filters,
+              priceRange: {
+                min: minPrice === "" ? 0 : parseFloat(minPrice),
+                max: maxPrice === "" ? Infinity : parseFloat(maxPrice),
+              },
+            })
+          )
+        }
       />
       <button
-        onClick={handleClearPrice}
+        onClick={() => dispatch(clearPrice())}
         className="text-sm underline text-gray-600"
       >
         Clear
       </button>
 
-      <RatingSlider rating={filters.rating} onChange={handleRatingChange} />
+      {/* Rating */}
+      <RatingSlider
+        rating={filters.rating}
+        onChange={(e) =>
+          dispatch(
+            setFilters({ ...filters, rating: parseFloat(e.target.value) })
+          )
+        }
+      />
       <button
-        onClick={handleClearRatings}
+        onClick={() => dispatch(clearRating())}
         className="text-sm underline text-gray-600"
       >
         Clear

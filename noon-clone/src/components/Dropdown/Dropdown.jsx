@@ -1,24 +1,33 @@
-import { useContext, useState } from "react";
-import { ProductContext } from "../../Context/ProductContext";
+import { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { updateFilter, clearFilter } from "../../redux/actions/FilterActions";
 
-const Dropdown = ({ label, items, filterKey, placeholder }) => {
-  const { filters, setFilters } = useContext(ProductContext);
+const Dropdown = ({ label, items, filterKey, placeholder, onClear }) => {
+  const dispatch = useDispatch();
+  const filters = useSelector((state) => state.filters.filters);
   const [search, setSearch] = useState("");
 
-  const handleToggle = (item) => {
-    const updated = filters[filterKey].includes(item)
-      ? filters[filterKey].filter((b) => b !== item)
-      : [...filters[filterKey], item];
+  const getLabel = (item) => (typeof item === "string" ? item : item.label);
 
-    setFilters((prev) => ({ ...prev, [filterKey]: updated }));
+  const handleToggle = (label) => {
+    const current = filters[filterKey] || [];
+    const updated = current.includes(label)
+      ? current.filter((b) => b !== label)
+      : [...current, label];
+
+    dispatch(updateFilter(filterKey, updated));
   };
 
   const handleClear = () => {
-    setFilters((prev) => ({ ...prev, [filterKey]: [] }));
+    if (onClear) {
+      onClear();
+    } else {
+      dispatch(clearFilter(filterKey));
+    }
   };
 
   const filteredItems = items.filter((item) =>
-    item.toLowerCase().includes(search.toLowerCase())
+    getLabel(item).toLowerCase().includes(search.toLowerCase())
   );
 
   return (
@@ -32,16 +41,19 @@ const Dropdown = ({ label, items, filterKey, placeholder }) => {
       />
 
       <div className="max-h-[200px] overflow-y-auto space-y-2">
-        {filteredItems.map((item, i) => (
-          <label key={i} className="flex items-center gap-2 text-sm">
-            <input
-              type="checkbox"
-              checked={filters[filterKey].includes(item)}
-              onChange={() => handleToggle(item)}
-            />
-            {item}
-          </label>
-        ))}
+        {filteredItems.map((item, i) => {
+          const labelValue = getLabel(item);
+          return (
+            <label key={i} className="flex items-center gap-2 text-sm">
+              <input
+                type="checkbox"
+                checked={filters[filterKey]?.includes(labelValue)}
+                onChange={() => handleToggle(labelValue)}
+              />
+              {labelValue}
+            </label>
+          );
+        })}
       </div>
 
       <div className="flex justify-between mt-4">

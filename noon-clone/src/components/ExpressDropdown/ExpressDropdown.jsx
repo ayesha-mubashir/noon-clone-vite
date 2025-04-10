@@ -1,12 +1,20 @@
-import { useContext } from "react";
-import { ProductContext } from "../../Context/ProductContext";
+import { useDispatch, useSelector } from "react-redux";
+import { setExpress, clearExpress } from "../../redux/actions/FilterActions";
 import RadioButton from "../common/ui/RadioButton";
-import useFilterHandlers from "../../hooks/useFilterHandlers";
 
 const ExpressDropdown = () => {
-  const { filters } = useContext(ProductContext);
+  // const filters = useSelector((state) => state.filters);
+  const filters = useSelector((state) => state.filters.filters);
 
-  const { handleExpressChange, handleClearExpress } = useFilterHandlers();
+  const dispatch = useDispatch();
+
+  const handleChange = (e, value) => {
+    dispatch(setExpress(value));
+  };
+
+  const handleClear = () => {
+    dispatch(clearExpress());
+  };
 
   return (
     <div className="absolute left-0 top-full mt-2 bg-white shadow-lg p-4 rounded-lg w-[250px] z-50">
@@ -20,12 +28,12 @@ const ExpressDropdown = () => {
         selectedValue={
           filters.express === null ? "null" : filters.express.toString()
         }
-        onChange={handleExpressChange}
+        onChange={handleChange}
       />
 
       <div className="flex justify-between mt-4">
         <button
-          onClick={handleClearExpress}
+          onClick={handleClear}
           className="text-sm underline text-gray-600"
         >
           Clear
