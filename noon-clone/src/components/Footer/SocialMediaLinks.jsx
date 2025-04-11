@@ -2,7 +2,7 @@ import { socialLinks } from "../../utils/SocialLinks";
 
 const SocialMediaLinks = () => {
   return (
-    <div className="absolute right-60 flex justify-center gap-6 mb-6 mr-6 mt-6">
+    <div className="flex justify-center md:justify-end gap-4">
       {socialLinks.map((social) => (
         <a
           key={social.name}

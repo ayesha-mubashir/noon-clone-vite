@@ -2,7 +2,7 @@ import { appStores } from "../../utils/SocialLinks";
 
 const AppDownloadLinks = () => {
   return (
-    <div className="absolute left-40 flex justify-center gap-6 ml-6 mt-6">
+    <div className="flex flex-wrap justify-center md:justify-start gap-4">
       {appStores.map((store) => (
         <a
           key={store.name}

@@ -8,7 +8,7 @@ import { settings } from "../../utils/constantsData";
 
 const Carousel = () => {
   return (
-    <div className=" w-[80%] mx-auto mt-4 mb-4">
+    <div className=" w-[80%] mx-auto mt-4 mb-4 z-10">
       <Slider {...settings}>
         {categories_carousel.map((category, index) => (
           <div key={index} className="min-w-[180px]">
