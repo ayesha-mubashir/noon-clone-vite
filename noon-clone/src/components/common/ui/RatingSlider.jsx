@@ -14,6 +14,7 @@ const RatingSlider = ({ rating, onChange }) => {
         />
         <span className="text-xs w-[32px] text-right">
           {rating.toFixed(1)}★
+          {/* {typeof rating === "number" ? rating.toFixed(1) : "0.0"}★ */}
         </span>
       </div>
     </div>

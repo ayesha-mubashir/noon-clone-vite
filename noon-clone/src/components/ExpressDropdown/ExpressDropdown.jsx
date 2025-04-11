@@ -3,14 +3,9 @@ import { setExpress, clearExpress } from "../../redux/actions/FilterActions";
 import RadioButton from "../common/ui/RadioButton";
 
 const ExpressDropdown = () => {
-  // const filters = useSelector((state) => state.filters);
   const filters = useSelector((state) => state.filters.filters);
 
   const dispatch = useDispatch();
-
-  const handleChange = (e, value) => {
-    dispatch(setExpress(value));
-  };
 
   const handleClear = () => {
     dispatch(clearExpress());
@@ -19,7 +14,7 @@ const ExpressDropdown = () => {
   return (
     <div className="absolute left-0 top-full mt-2 bg-white shadow-lg p-4 rounded-lg w-[250px] z-50">
       <RadioButton
-        name="express"
+        name="express-scrollbar"
         options={[
           { value: "true", label: "Express" },
           { value: "false", label: "Other" },
@@ -28,7 +23,7 @@ const ExpressDropdown = () => {
         selectedValue={
           filters.express === null ? "null" : filters.express.toString()
         }
-        onChange={handleChange}
+        onChange={(e) => dispatch(setExpress(e.target.value))}
       />
 
       <div className="flex justify-between mt-4">

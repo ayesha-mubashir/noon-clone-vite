@@ -2,7 +2,6 @@ import { useSelector, useDispatch } from "react-redux";
 import {
   setMinPrice,
   setMaxPrice,
-  clearFilter,
   clearExpress,
   clearPrice,
   updateFilter,
@@ -25,8 +24,6 @@ const FiltersSidebar = () => {
   const filters = useSelector((state) => state.filters.filters);
   const minPrice = useSelector((state) => state.filters.minPrice);
   const maxPrice = useSelector((state) => state.filters.maxPrice);
-
-  // console.log("Sidebar filters:", filters);
 
   const handleClearAll = () => {
     dispatch(
@@ -54,7 +51,7 @@ const FiltersSidebar = () => {
       {/* Delivery Mode */}
       <h3 className="font-bold mb-2">Delivery Mode</h3>
       <RadioButton
-        name="express"
+        name="express-sidebar"
         options={[
           { value: "true", label: "Express" },
           { value: "false", label: "Other" },
@@ -65,6 +62,7 @@ const FiltersSidebar = () => {
         }
         onChange={(e) => dispatch(setExpress(e.target.value))}
       />
+
       <button
         onClick={() => dispatch(clearExpress())}
         className="text-sm underline text-gray-600"

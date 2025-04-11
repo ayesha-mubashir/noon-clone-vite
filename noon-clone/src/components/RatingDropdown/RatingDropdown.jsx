@@ -4,7 +4,8 @@ import RatingSlider from "../common/ui/RatingSlider";
 
 const RatingDropdown = () => {
   const dispatch = useDispatch();
-  const rating = useSelector((state) => state.filters.rating);
+  // const rating = useSelector((state) => state.filters.rating);
+  const rating = useSelector((state) => state.filters.filters.rating);
 
   const handleChange = (e) => {
     dispatch(setRating(parseFloat(e.target.value)));

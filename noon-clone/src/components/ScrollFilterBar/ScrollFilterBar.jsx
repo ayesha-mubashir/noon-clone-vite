@@ -7,7 +7,6 @@ import CategoryDropdown from "../CategoryDropdown/CategoryDropdown";
 import ExpressDropdown from "../ExpressDropdown/ExpressDropdown";
 import DealsDropdown from "../DealsDropdown/DealsDropdown";
 import { FaChevronDown } from "react-icons/fa";
-
 import { setSelectedFilterKeysFromFilters } from "../../redux/reducers/FilterReducer";
 import RatingDropdown from "../RatingDropdown/RatingDropdown";
 
@@ -18,10 +17,7 @@ const ScrollFilterBar = () => {
   const selectedFilterKeys = useSelector(
     (state) => state.filters.selectedFilterKeys
   );
-
-  console.log("ScrollFilterBar filters:", filters);
-  console.log("activeDropdown:", activeDropdown);
-  console.log("selectedFilterKeys:", selectedFilterKeys);
+  useEffect(() => {}, [filters]);
 
   const buttons = [
     { label: "Brand", key: "brand", isSelected: filters.brand.length > 0 },

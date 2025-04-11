@@ -15,7 +15,7 @@ const Dropdown = ({ label, items, filterKey, placeholder, onClear }) => {
       ? current.filter((b) => b !== label)
       : [...current, label];
 
-    dispatch(updateFilter(filterKey, updated));
+    dispatch(updateFilter(filterKey, label));
   };
 
   const handleClear = () => {

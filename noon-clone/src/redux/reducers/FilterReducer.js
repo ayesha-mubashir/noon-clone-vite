@@ -100,7 +100,7 @@ const FilterReducer = (state = initialState, action) => {
     }
 
     case UPDATE_FILTER: {
-      debugger;
+      // debugger;
       const { key, value } = action.payload;
       const currentValues = state.filters[key] || [];
       const newValues = currentValues.includes(value)
@@ -139,7 +139,7 @@ const FilterReducer = (state = initialState, action) => {
     }
 
     case CLEAR_FILTER: {
-      const key = action.payload;
+      const { key } = action.payload;
       const defaultValue = Array.isArray(state.filters[key]) ? [] : null;
 
       const updatedFilters = {
@@ -197,6 +197,8 @@ const FilterReducer = (state = initialState, action) => {
       return {
         ...state,
         filters: updatedFilters,
+        minPrice: "",
+        maxPrice: "",
         filteredProducts: getFilteredProducts(updatedFilters),
       };
     }
@@ -208,6 +210,7 @@ const FilterReducer = (state = initialState, action) => {
       return {
         ...state,
         filters: updatedFilters,
+        rating: 0,
         filteredProducts: getFilteredProducts(updatedFilters),
       };
     }
